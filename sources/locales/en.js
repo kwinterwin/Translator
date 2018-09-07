@@ -1,0 +1,21 @@
+export default {
+	"Translator":"Translator",
+	"List of words groups":"List of words groups",
+	"Test":"Test",
+	"Test results":"Test results",
+	"Sign out":"Sign out",
+	"Sign in":"Sign in",
+    "Sign in | Authorization":"Sign in | Authorization",
+    "Login":"Login",
+    "Password":"Password",
+    "Authorization":"Authorization",
+    "Cancel":"Cancel",
+    "English":"English",
+    "Russian":"Russian",
+    "Add word group":"Add word group",
+    "Add words to selected group":"Add words to selected group",
+    "Original word":"Original word",
+    "Translation":"Translation",
+    "Parts of speech":"Parts of speech",
+    "Add":"Add"
+};
