@@ -2,48 +2,64 @@ const wordGroup = require ("../models/wordGroup");
 
 let wordGroupData = {
 
-	// saveData(req, res){
-	// 	books.findByIdAndUpdate(req.body._id, req.body, function(err){
-	// 		if(err){
-	// 			console.log(err);
-	// 			res.status(500).send(err);
-	// 		} else {
-	// 			res.json({});
-	// 		}
-	// 	});
-	// },
-
-	showData(req, res){
+	showGroup: function(req, res){
 		wordGroup.find({}, function(err, data){
 			if(err){
-				console.log(err);
 				res.status(500).send(err);
-			} else{
-				res.json(data);
+				console.log(err);
+			} else {
+				let mass = data.map((item)=>{
+					item.id = item._id;
+					return item;
+				});
+				res.json(mass);
 			}
 		});
 	},
 
-	deleteData(req, res){
+	addGroup: function(req, res){
+		let name = req.body.name;
+		let words = JSON.parse(req.body.values);
+		let newGroup = {
+			name,
+			words
+		};
+		wordGroup.create(newGroup, function(err){
+			if(err){
+				res.status(500).send(err);
+				console.log(err);
+			} else {
+				res.json({});
+			}
+		});
+	},
+
+	delGroup: function(req, res){
 		wordGroup.findByIdAndRemove(req.body._id, function(err){
 			if(err){
-				console.log(err);
 				res.status(500).send(err);
-			} else{
+				console.log(err);
+			} else {
 				res.json({});
 			}
 		});
 	},
 
-	addData(req, res){
-		wordGroup.create(req.body, function(err){
+	changeGroup: function(req, res){
+		let name = req.body.name;
+		var words = JSON.parse(req.body.values);
+		let newGroup = {
+			name,
+			words
+		};
+		wordGroup.findByIdAndUpdate(req.params.id, newGroup, function(err){
 			if(err){
-				console.log(err);
 				res.status(500).send(err);
-			} else{
+				console.log(err);
+			} else {
 				res.json({});
 			}
 		});
-	}	
+	},
 };
 module.exports = wordGroupData;

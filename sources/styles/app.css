@@ -6,3 +6,9 @@
 .imageWrape{
 	width: 100%;
 } */
+
+.webix_list_item span{
+	float:right;
+	padding: 5px;
+	margin-right: 8px;
+}

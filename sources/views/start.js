@@ -57,11 +57,13 @@ export default class Start extends JetView{
 		return {
 			rows:[
 				header,
-				{
-					cols:[
+				{cols:[
+					{ rows:[
 						sidebar,
-						{$subview:true}
-					]
+						{height:1}]
+					},
+					{$subview:true}
+				]
 				}
 			]
 		};

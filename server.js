@@ -14,11 +14,14 @@ mongoose.connect("mongodb://localhost/translator");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
-app.get("/wordGroup", wordGroup.showData);
-app.post("/wordGroup", wordGroup.addData);
+app.get("/wordGroup", wordGroup.showGroup);
+app.post("/wordGroup", wordGroup.addGroup);
+app.delete("/wordGroup/:id", wordGroup.delGroup);
+app.put("/wordGroup/:id", wordGroup.changeGroup);
 
 app.get("/words", words.getData);
 app.post("/words", words.addData);
+app.post("/words/test", words.wordsForGroup);
 
 
 app.listen(port, ()=>{

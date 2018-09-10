@@ -1,7 +1,8 @@
 import {JetView} from "webix-jet";
 import {wordGroup} from "models/wordGroup";
-import {words} from "models/words";
+import * as words from "models/words";
 import newWordGroupPopup from "./newWordGroup";
+import newWordPopup from "./newWord";
 
 export default class List extends JetView{
 	config(){
@@ -12,64 +13,71 @@ export default class List extends JetView{
 			view:"toolbar",
 			localId:"listToolbar",
 			cols:[
-				{},
 				{ view:"button", value:_("Add word group"), align:"right", inputWidth:200, click:()=>{
 					this._jetPopup.showWindow();
+				}},
+				{view:"button", value:_("Add word"), type:"form", inputWidth:200, click:()=>{
+					this._jetPopupWord.showWindow();
 				}}
 			]
 		};
 
 		let list = {
 			rows:[ 
-                listToolbar,
+				listToolbar,
 				{
 					view:"list",
 					localId:"list",
 					width:460,
-					template:"#name#",
+					template:`#name# <span class='fa fa-trash delete' title = '${_("Remove")}'></span>  <span class='fa fa-pencil edit' title='${_("Edit")}'></span>`,
 					select:true,
+					onClick:{
+						delete: function (e, id) {
+							webix.confirm({
+								text: _("Group will be removed. Continue?"), title: _("Attention"),
+								ok: _("Yes"),
+								cancel: _("No"),
+								callback: (result)=>{
+									if (result) {
+										wordGroup.remove(id);
+									}
+								}
+							});
+							return false;
+						}, 
+						edit: (e,id)=>{
+							let values = wordGroup.getItem(id);
+							this._jetPopup.showWindow(values);
+							return false;
+						}
+					},
 					on:{
 						onAfterSelect: ()=>{
-							let groupId = this.$$("list").getSelectedItem().id;
-							wordGroup.updateItem(groupId, {Name:"jfkdjf"});
-							// console.log(groupId);
-                            // console.log(words.data.exists(groupId));
-                            // if (words.getItem().groupId==groupId){
-                            //     this.$$("datatable").clearAll();
-                            //     this.$$("datatable").add()
-                            // }
-							this.$$("datatable").show();
+							let word = this.$$("list").getSelectedItem().words;
+							this.$$("datatable").clearAll();
+							webix.ajax().post("http://localhost:3000/words/test", {filter: word}, (text)=>{
+								this.$$("datatable").parse(text);
+							});
+							this.$$("dataTool").show();
 						}
 					}
-				},
-				{}
+				}
 			],
-		};
-
-		let datatableToolbar = {
-			view:"toolbar",
-			localId:"datatableToolbar",
-			cols:[
-                { view:"button", value:_("Add words to selected group"), align:"left", inputWidth:300},
-                { view:"button", value:"dfdfvdfv", inputWidth:300, click:()=>{
-                    let groupId = this.$$("list").getSelectedItem().id;
-                    wordGroup.updateItem({Name:"jfkdjf"});}}
-			]
 		};
         
 		let datatable = {
 			rows:[
-				datatableToolbar,
 				{
 					view:"datatable",
+					localId:"datatable",
 					columns:[
-						{id:"originalWord", header:_("Original word"), fillspace:1},
+						{id:"originalName", header:_("Original word"), fillspace:1},
 						{id:"translationEng", header:_("Translation"), fillspace:1},
 						{id:"partOfSpeech", header:_("Parts of speech")}
 					]
 				}
 			],
-			localId:"datatable",
+			localId:"dataTool",
 			hidden:true
 		};
 		
@@ -84,5 +92,6 @@ export default class List extends JetView{
 	init(){
 		this.$$("list").sync(wordGroup);
 		this._jetPopup = this.ui(newWordGroupPopup);
+		this._jetPopupWord = this.ui(newWordPopup);
 	}
 }
