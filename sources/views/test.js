@@ -109,16 +109,16 @@ export default class Test extends JetView{
 				richselect,
 				{
 					view:"radio", 
-					label:"Type of test", 
+					label:_("Type of test"), 
 					labelPosition:"top",
 					localId:"radio",
 					value:1, 
 					options:[
-						{"id":1, "value":"from English into Russian"}, 
-						{"id":2, "value":"from Russian into English"}
+						{"id":1, "value":_("from English into Russian")}, 
+						{"id":2, "value":_("from Russian into English")}
 					]
 				},
-				{view:"button", label:_("Generate test"), inputWidth:150, click:()=>{
+				{view:"button", label:_("Generate test"), inputWidth:200, click:()=>{
 					this.$$("select").hide();
 					this.$$("test").show();
 					this.groupWords(this.$$("richselect").getText());
@@ -140,7 +140,7 @@ export default class Test extends JetView{
 				{
 					rows:[
 						{height:30},
-						{view:"label", label:"label", align:"center", localId:"label"},
+						{view:"label", label:"", align:"center", localId:"label"},
 						{height:30},
 						{
 							cols:[
@@ -178,7 +178,7 @@ export default class Test extends JetView{
 					hidden:true
 				},
 				{template:(obj)=>{
-					return `Your result: <b>${obj}</b>`;
+					return _("Your result: ") + `<b>${obj}</b>`;
 				}, localId:"resultMessage", css:"result", hidden:true},
 			]
 		};

@@ -35,5 +35,9 @@ export default {
 	"Please, select a list of words for the test:":"Выберите, пожалуйста, список слов для проведения теста:",
 	"Generate test":"Генерировать тест",
 	"It's right":"Правильно",
-	"Wrong":"Неправильно"
+	"Wrong":"Неправильно",
+	"Type of test":"Тип теста",
+	"from English into Russian":"с Английского на Русский",
+	"from Russian into English":"с Русского на Английский",
+	"Your result: ":"Ваш результат: "
 };
