@@ -30,5 +30,10 @@ export default {
     "Attention":"Attention",
     "Yes":"Yes",
     "No":"No",
-    "Edit word group: ":"Edit word group: "
+    "Edit word group: ":"Edit word group: ",
+	"Export to excel":"Export to excel",
+	"Please, select a list of words for the test:":"Please, select a list of words for the test:",
+	"Generate test":"Generate test",
+	"It's right":"It's right",
+	"Wrong":"Wrong"
 };

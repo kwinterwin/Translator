@@ -55,18 +55,32 @@ export default class List extends JetView{
 						onAfterSelect: ()=>{
 							let word = this.$$("list").getSelectedItem().words;
 							this.$$("datatable").clearAll();
-							webix.ajax().post("http://localhost:3000/words/test", {filter: word}, (text)=>{
-								this.$$("datatable").parse(text);
-							});
+							this.$$("datatable").parse(words.getWordsGroup(word));
 							this.$$("dataTool").show();
 						}
 					}
 				}
 			],
 		};
+
+		let datatableToolbar = {
+			view:"toolbar",
+			localId:"datatableToolbar",
+			cols:[
+				{
+					view: "button", 
+					label: _("Export to excel"),
+					inputWidth:250,
+					click:()=>{
+						webix.toExcel(this.$$("datatable"));
+					}
+				},
+			]
+		};
         
 		let datatable = {
 			rows:[
+				datatableToolbar,
 				{
 					view:"datatable",
 					localId:"datatable",

@@ -4,7 +4,7 @@ const cors = require("cors");
 const express = require("express");
 const wordGroup = require("./server/route/wordGroup");
 const words = require("./server/route/words");
-// const files = require("./server/models/files");
+const tests = require("./server/route/tests");
 
 let app = express();
 
@@ -22,6 +22,9 @@ app.put("/wordGroup/:id", wordGroup.changeGroup);
 app.get("/words", words.getData);
 app.post("/words", words.addData);
 app.post("/words/test", words.wordsForGroup);
+
+app.post("/tests", tests.addTests);
+app.get("/tests", tests.showTests);
 
 
 app.listen(port, ()=>{

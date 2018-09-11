@@ -8,7 +8,7 @@ webix.ready(() => {
 		id:			APPNAME,
 		version:	VERSION,
 		//router:        UrlRouter,
-		start:		"/start",
+		start:		"/start/list",
 		debug:      true
 	});
 	app.render();

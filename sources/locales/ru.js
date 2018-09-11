@@ -30,5 +30,10 @@ export default {
     "Attention":"Внимание",
     "Yes":"Да", 
     "No":"Нет",
-    "Edit word group: ":"Редактировать группу слов: "
+    "Edit word group: ":"Редактировать группу слов: ",
+	"Export to excel":"Экспорт слов в .xls формат",
+	"Please, select a list of words for the test:":"Выберите, пожалуйста, список слов для проведения теста:",
+	"Generate test":"Генерировать тест",
+	"It's right":"Правильно",
+	"Wrong":"Неправильно"
 };

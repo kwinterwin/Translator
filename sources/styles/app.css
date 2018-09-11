@@ -12,3 +12,18 @@
 	padding: 5px;
 	margin-right: 8px;
 }
+
+.green{
+	color:green;
+}
+
+.result{
+	padding-top:50px;
+	font-size: 36px;
+	display: block;
+	text-align: center;
+}
+
+.red{
+	color:red;
+}
