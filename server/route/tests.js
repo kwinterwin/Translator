@@ -3,7 +3,8 @@ const tests = require ("../models/tests");
 let testsData = {
 
 	showTests: function(req, res){
-		tests.find({}, function(err, data){
+		console.log(req.session);
+		tests.find({"user":req.session.user.login}, function(err, data){
 			if(err){
 				res.status(500).send(err);
 				console.log(err);
@@ -14,7 +15,12 @@ let testsData = {
 	},
 
 	addTests: function(req, res){
-		tests.create(req.body, function(err){
+		let obj = {
+			"groupName": req.body.groupName,
+			"result":req.body.result,
+			"user":req.session.user.login
+		};
+		tests.create(obj, function(err){
 			if(err){
 				res.status(500).send(err);
 				console.log(err);

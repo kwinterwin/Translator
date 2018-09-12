@@ -9,7 +9,8 @@ var wordGroup = new mongoose.Schema({
 			ref: "words"
 		}
 	],
-	id: String
+	id: String,
+	user: String
 });
 
 module.exports = mongoose.model("wordGroup", wordGroup);

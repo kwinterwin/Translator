@@ -1,5 +1,5 @@
-import {JetView, plugins} from "webix-jet";
-import SignInPopup from "./signInPopup";
+import {JetView} from "webix-jet";
+
 
 export default class Start extends JetView{
 	config(){
@@ -50,8 +50,16 @@ export default class Start extends JetView{
 				{id:"list", icon: "list", value: _("List of words groups")},
 				{id:"test", icon: "leanpub", value: _("Test")},
 				{id:"testResults", icon: "edit", value: _("Test results")},
-				{id:"signOut", icon: "hand-o-right", value: _("Sign out")}
-			]
+				{icon: "hand-o-right", value: _("Sign out")}
+			],
+			on:{
+				onAfterSelect:(id)=>{
+					if(this.$$("sidebar").getItem(id).id == "login")
+						this.show("/logout");
+					else
+						this.show(`../start/${this.$$("sidebar").getItem(id).id}`);
+				}
+			}
 		};
 		
 		return {
@@ -70,10 +78,6 @@ export default class Start extends JetView{
 
 	}
     
-	init(){
-		this._jetPopup = this.ui(SignInPopup);
-		this.use(plugins.Menu, "sidebar");
-	}
 
 	ready(){
 		let sidebar = this.getRoot().queryView({view:"sidebar"});

@@ -3,7 +3,8 @@ const wordGroup = require ("../models/wordGroup");
 let wordGroupData = {
 
 	showGroup: function(req, res){
-		wordGroup.find({}, function(err, data){
+		console.log(req.session);
+		wordGroup.find({"user":req.session.user.login}, function(err, data){
 			if(err){
 				res.status(500).send(err);
 				console.log(err);
@@ -22,7 +23,8 @@ let wordGroupData = {
 		let words = JSON.parse(req.body.values);
 		let newGroup = {
 			name,
-			words
+			words,
+			"user" : req.session.user.login
 		};
 		wordGroup.create(newGroup, function(err){
 			if(err){

@@ -14,7 +14,7 @@ export default class Test extends JetView{
 			if(obj.name == list)
 				group=obj;
 		});
-		webix.ajax().post("http://localhost:3000/words/test", {filter: group.words}, (text, json)=>{
+		webix.ajax().post("/server/words/test", {filter: group.words}, (text, json)=>{
 			let data = json.json();
 			if(data.problem){
 				webix.message({text:data.message,type:"error"});

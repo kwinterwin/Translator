@@ -3,7 +3,7 @@ import {JetApp, plugins} from "webix-jet";
 import session from "models/session";
 
 webix.ready(() => {
-	webix.CustomScroll.init();
+
 	var app = new JetApp({
 		id:			APPNAME,
 		version:	VERSION,
@@ -14,10 +14,6 @@ webix.ready(() => {
 	app.render();
 
 	app.use(plugins.Locale,{lang:"en"});
-	// app.use(plugins.User, { model : session });
-	// const _ = this.app.getService("locale")._;
+	app.use(plugins.User, { model : session });
 
-	app.attachEvent("app:error:resolve", function(name, error){
-		window.console.error(error);
-	});
 });

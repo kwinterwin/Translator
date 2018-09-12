@@ -14,6 +14,6 @@ export const tests = new webix.DataCollection({
 			delete obj.date;
 		}
 	},
-	url:"http://localhost:3000/tests",
-	save:"rest->http://localhost:3000/tests/",
+	url:"/server/tests",
+	save:"rest->/server/tests/",
 });
