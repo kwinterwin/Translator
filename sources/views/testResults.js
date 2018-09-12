@@ -10,9 +10,9 @@ export default class List extends JetView{
 			view:"datatable",
 			localId:"datatable",
 			columns:[
-				{id:"groupName", header:"Group of words", fillspace:1},
-				{id:"date", header:"Date of the test", fillspace:1},
-				{id:"result", header:"Result"}
+				{id:"groupName", header:_("Group of words"), fillspace:1},
+				{id:"date", header:_("Date of the test"), fillspace:1},
+				{id:"result", header:_("Result")}
 			]
 		};
 		

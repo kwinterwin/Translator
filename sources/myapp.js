@@ -11,9 +11,9 @@ webix.ready(() => {
 		start:		"/start/list",
 		debug:      true
 	});
-	app.render();
+	
 
 	app.use(plugins.Locale,{lang:"en"});
 	app.use(plugins.User, { model : session });
-
+	app.render();
 });

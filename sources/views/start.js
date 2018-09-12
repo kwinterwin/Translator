@@ -50,7 +50,7 @@ export default class Start extends JetView{
 				{id:"list", icon: "list", value: _("List of words groups")},
 				{id:"test", icon: "leanpub", value: _("Test")},
 				{id:"testResults", icon: "edit", value: _("Test results")},
-				{icon: "hand-o-right", value: _("Sign out")}
+				{id:"login", icon: "hand-o-right", value: _("Sign out")}
 			],
 			on:{
 				onAfterSelect:(id)=>{
