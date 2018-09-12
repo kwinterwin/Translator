@@ -31,14 +31,25 @@ let usersData = {
 	},
     
 	authorization: function(req, res){
-		users.create(req.body, function(err){
+		users.find({"login":req.body.login}, function(err, data){
 			if(err){
 				res.status(500).send(err);
 				console.log(err);
 			} else {
-				res.json({});
+				if(data.length==0){
+					users.create(req.body, function(err){
+						if(err){
+							res.status(500).send(err);
+							console.log(err);
+						} else {
+							res.json({});
+						}
+					});
+				}
+				else res.json({"message":"The user under this login is already registered"});
 			}
 		});
+		
 	}
 };
 module.exports = usersData;
