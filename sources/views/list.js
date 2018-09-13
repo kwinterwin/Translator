@@ -29,7 +29,15 @@ export default class List extends JetView{
 					view:"list",
 					localId:"list",
 					width:460,
-					template:`#name# <span class='fa fa-trash delete' title = '${_("Remove")}'></span>  <span class='fa fa-pencil edit' title='${_("Edit")}'></span>`,
+					template: (obj)=>{
+						let temp = `${obj.name}`;
+						if(obj.hasOwnProperty("values")){
+							temp += ` / ${obj.values.length} -ptc <span class='fa fa-trash delete' title = '${_("Remove")}'></span>  <span class='fa fa-pencil edit' title='${_("Edit")}'></span>`;
+						}
+						else
+							temp += ` / ${obj.words.length} -ptc <span class='fa fa-trash delete' title = '${_("Remove")}'></span>  <span class='fa fa-pencil edit' title='${_("Edit")}'></span>`;
+						return temp;
+					},
 					select:true,
 					onClick:{
 						delete: function (e, id) {

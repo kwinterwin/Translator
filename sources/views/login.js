@@ -57,8 +57,10 @@ export default class LoginView extends JetView{
 		if (form.validate()){
 			const data = form.getValues();
 			webix.ajax().post("/server/login/authorization", data).then(function (result) {
-				// console.log(result.json().message);
-				webix.message({type:"error", text:result.json().message});
+				if(result.json().hasOwnProperty("message"))
+					webix.message({type:"error", text:result.json().message});
+				else
+					webix.message({type:"error", text:"Successful registration"});
 			}).fail(function () {
 				webix.message({type: "error", text: "Registration failed"});
 			});
